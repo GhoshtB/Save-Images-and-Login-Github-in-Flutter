@@ -16,6 +16,8 @@ class GithubLogin extends StatefulWidget {
 class GithubLoginState extends State<GithubLogin> {
   TextEditingController controller = TextEditingController();
 
+  var api=Api();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,28 +136,27 @@ class UserDetailsListPageState extends State<UserDetailsListPage> {
 
   Widget showItems(ReposData data) {
 return Padding(padding: EdgeInsets.all(5),
-child: Padding(padding: EdgeInsets.all(5),
-child: Card(
-  elevation: 3,
-  child: Column(
-    children: <Widget>[
-      Padding(padding: EdgeInsets.all(5),child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(data.owner.login,style: titlestyle,),
-          Text(data.name,style: othertyle,)
-        ],),),
-      SizedBox(height: 10,),
-      Text(data.description,style: othertyle),
-      SizedBox(height: 10,),
-      Padding(padding: EdgeInsets.all(5),child: Text(data.url,style: childtyle,),),
-      Padding(padding: EdgeInsets.all(5),
-        child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  child: Card(
+    elevation: 3,
+    child: Column(
+      children: <Widget>[
+        Padding(padding: EdgeInsets.all(3),child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Text(data.created_at,style: othertyle,),
-            Text(data.updated_at,style: othertyle,)
-          ],),)
-    ],
-  ),
-),));
+            Text(data.name??"",style: titlestyle,),
+            Text(data.owner.login??"",style: othertyle,)
+          ],),),
+        SizedBox(height: 10,),
+        Text(data.description??"",style: othertyle),
+        SizedBox(height: 10,),
+        Padding(padding: EdgeInsets.all(5),child: Text(data.url,style: childtyle,),),
+        Padding(padding: EdgeInsets.all(5),
+          child:Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text(data.created_at??"",style: othertyle,),
+              Text(data.updated_at??"",style: othertyle,)
+            ],),)
+      ],
+    ),
+  ),);
   }
 }

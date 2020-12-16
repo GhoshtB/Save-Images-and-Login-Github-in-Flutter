@@ -14,3 +14,5 @@ var childtyle=TextStyle(
 var othertyle=TextStyle(
     color: Colors.black45
     ,fontSize: 16 ,fontFamily: "Castoro"   );
+
+final prsnlAcsTken = "cb0e6540a8b1c8d58e1b28cbf663212da55675bf";

@@ -3,6 +3,8 @@ import 'dart:convert' show json, utf8;
 import 'dart:io';
 import 'dart:async';
 import 'package:date_format/date_format.dart';
+import 'package:flutter_app_favourite_cmbntn/utils/constants.dart';
+import 'package:flutter_app_favourite_cmbntn/utils/utility.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_app_favourite_cmbntn/model/userData.dart';
 import 'repo.dart';
@@ -81,7 +83,7 @@ class Api {
 
   Future<List<ReposData>> getRepositoryData(String url) async{
 
-    var response=await http.get(url);
+    var response=await http.get(url,headers: {'Authorization': 'Bearer ' + prsnlAcsTken});
     /*page=${firstKey}&per_page=${keyword}*/
     print(url);
 
@@ -103,7 +105,15 @@ class Api {
 
 Future<UserData> loginWithGithubUserName(String userName) async{
   var url= "https://api.github.com/users/$userName";
-  var https =await http.Client().get(url);
+  // final authorizationEndpoint =
+  // Uri.parse('https://api.github.com/authorizations');
+  // var client = await oauth2.clientCredentialsGrant(
+  //     authorizationEndpoint, GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET);
+  Api api= Api();
+  // var response =
+  // await client.read('https://example.com/api/some_resource.json');
+
+  var https =await http.Client().get(url,headers: {'Authorization': 'Bearer ' + prsnlAcsTken});
 
   var response = json.decode(https.body);
   UserData data = UserData.fromJson(response);
